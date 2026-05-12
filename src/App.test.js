@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renders the anniversary dashboard", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText(/Hôm nay là ngày thứ/i)).toBeInTheDocument();
+  expect(screen.getByText(/Sự kiện sắp tới/i)).toBeInTheDocument();
 });

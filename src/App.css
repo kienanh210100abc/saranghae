@@ -1,38 +1,295 @@
-.App {
-  text-align: center;
+@media (max-width: 400px) {
+  .main-title {
+    font-size: 15vw !important;
+  }
+}
+/* Responsive title: luôn 1 dòng, tự động co nhỏ */
+.main-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 6vw !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 18px !important;
+    margin-bottom: 12px !important;
+  }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Responsive for mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 14px 4vw;
+    max-width: 380px;
+    width: 92vw;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h1 {
+    font-size: 22px;
+    margin-top: 18px;
+    margin-bottom: 12px;
+  }
+  .days {
+    font-size: 17px;
+    margin: 10px 0 18px 0;
+  }
+  h2 {
+    font-size: 16px;
+    margin-top: 12px;
+  }
+  .event {
+    font-size: 14px;
+    padding: 8px;
+    margin: 7px 0;
+  }
+  .progress-bar-container {
+    height: 5px !important;
+    margin-top: 10px !important;
   }
 }
 
-.App-header {
-  background-color: #282c34;
+/* Small-screen fixes: prevent banner from covering content and allow titles to wrap when necessary */
+@media (max-width: 480px) {
+  /* make special banner flow instead of fixed (so it doesn't overlap main content) */
+  .special-banner {
+    position: relative !important;
+    font-size: 14px !important;
+    padding: 6px 8px !important;
+  }
+  .special-banner > div {
+    padding-left: 20% !important;
+    animation-duration: 10s !important;
+  }
+
+  /* allow main title to wrap on very narrow screens to avoid overflow */
+  .main-title {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    font-size: clamp(18px, 6.5vw, 28px) !important;
+    margin-top: 12px !important;
+  }
+
+  /* reduce container padding/width so card fits smaller screens */
+  .container {
+    padding: 12px !important;
+    width: calc(100% - 24px) !important;
+    max-width: 380px !important;
+  }
+
+  /* slightly smaller progress bar on tiny phones */
+  .progress-bar-container {
+    height: 5px !important;
+    margin-top: 10px !important;
+  }
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 7px;
+  background: #fda08522;
+  border-radius: 5px;
+  margin-top: 18px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #fda085 0%, #f6d365 100%);
+  transition: width 0.2s;
+  border-radius: 5px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   min-height: 100vh;
+  color: #222;
+  transition: background 0.5s;
+}
+
+/* Ensure page doesn't create a horizontal scroll that breaks swipe gestures */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 32px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(253, 160, 133, 0.18);
+  max-width: 420px;
+  margin-bottom: 30px;
+  animation: fadeIn 1s;
+}
+
+/* On small devices, avoid centering entire app vertically so content can scroll naturally */
+@media (max-width: 768px) {
+  /* For all phones: center content vertically and prevent horizontal scrolling */
+  .app-root {
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: 12px !important;
+    padding-bottom: 40px !important;
+  }
+}
+
+/* For small-width devices that have plenty of vertical space, center the content vertically
+   without preventing scrolling when content overflows. This targets typical phone heights */
+@media (max-width: 768px) and (min-height: 700px) {
+  .app-root {
+    justify-content: center !important;
+  }
+  .container {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+h1 {
+  font-size: 38px;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #fda085;
+}
+
+/* title icons (SVGs from public/) */
+.title-icon {
+  /* width: 30px;
+  height: 30px; */
+  object-fit: contain;
+  display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .title-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.days {
+  font-size: 26px;
+  margin: 18px 0 28px 0;
+  color: #d63384;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 22px;
+  margin-top: 24px;
+  color: #6f42c1;
+}
+
+.events {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.event {
+  background: rgba(253, 160, 133, 0.10);
+  margin: 12px 0;
+  padding: 14px;
+  border-radius: 10px;
+  border: 2px solid #fda08533;
+  box-shadow: 0 2px 8px #fda08522;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.event:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 24px #fda08533;
+}
+
+button {
+  background: #fda085;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  box-shadow: 0 2px 6px #fda08533;
+  margin-left: 8px;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #f6d365;
+  color: #d63384;
+}
+
+/* Refresh button icon */
+.refresh-btn {
+  border-radius: 8px;
+  background: rgba(253,160,133,0.06);
+}
+.refresh-btn:focus {
+  outline: 2px solid rgba(253,160,133,0.25);
+}
+.refresh-icon {
+  transition: transform 240ms ease, opacity 200ms ease;
+  opacity: 0.95;
+}
+.refresh-btn:hover .refresh-icon {
+  transform: rotate(90deg);
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* marquee animation for special banner (used by Header) */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.special-banner > div {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+}
+
+/* Ensure the marquee content fills the banner and is vertically centered */
+.special-banner-content {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+/* flying heart animation when clicking event cards */
+.flying-heart {
+  position: absolute;
+  pointer-events: none;
+  transform: translateY(0) scale(1);
+  animation: floatUp 1200ms cubic-bezier(.2,.8,.2,1) forwards;
+  will-change: transform, opacity;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
-  to {
-    transform: rotate(360deg);
+  30% {
+    transform: translateY(-30px) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(0.9);
   }
 }

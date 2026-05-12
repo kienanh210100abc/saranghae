@@ -5,7 +5,6 @@ import {
   generateYearMilestones,
   getNextBirthday,
   diffInDays,
-  formatDate,
 } from "../helpers";
 
 export default function EventsList() {
